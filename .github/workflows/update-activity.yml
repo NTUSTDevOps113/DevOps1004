@@ -1,0 +1,19 @@
+# .github/workflows/update-activity.yml:
+
+name: Update GitHub Activity
+
+on:
+  schedule:
+    - cron: "0 4 1,16 * *" # Runs at 04:00, on day 1 and 16 of the month.
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  update-activity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update GitHub Activity
+        uses: TheDanniCraft/activity-log@v1
+        with:
+          GITHUB_USERNAME: "junxiangzhan"
+          GITHUB_TOKEN: ${{ secrets.ACTIVITY_LOG_20241230 }} # Ensure this matches the secret name in repository settings
